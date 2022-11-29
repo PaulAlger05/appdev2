@@ -26,20 +26,14 @@ def hello():
     cursor.execute("""
             select Service_ID, Svc_DateTime, Theme_Event
             from service
-            """)
+            where Service_ID = %s
+            """, (id, ))
 
     # cursor.execute("""
     #     select ProdId, ProdName, Quantity, ProdNextShipDate
     #     from product
     #     where Quantity < %s
-    # """, (qty, ))
-
-    # SQL Injection vulnerability here:
-    # cursor.execute(f"""
-    # select ProdId, ProdName, Quantity, ProdNextShipDate
-    # from product
-    # where Quantity < {qty}
-    # """)  # Also try   ProdName = '{0}'    
+    # """, (qty, ))   
 
     # Retrieve results
     result = cursor.fetchall()
