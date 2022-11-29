@@ -14,8 +14,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    qty = 0
-    qty = request.args.get('qty')
+    id = 0
+    id = request.args.get('id')
 
     # We don't close the following explicitly because they are automatically closed
     # when the variables go out of scope when hello() returns
@@ -24,10 +24,15 @@ def hello():
     con.autocommit = True
 
     cursor.execute("""
-        select ProdId, ProdName, Quantity, ProdNextShipDate
-        from product
-        where Quantity < %s
-    """, (qty, ))
+            select Service_ID, Svc_DateTime, Theme_Event
+            from service
+            """)
+
+    # cursor.execute("""
+    #     select ProdId, ProdName, Quantity, ProdNextShipDate
+    #     from product
+    #     where Quantity < %s
+    # """, (qty, ))
 
     # SQL Injection vulnerability here:
     # cursor.execute(f"""
@@ -41,13 +46,12 @@ def hello():
 
     tableRows = ""
     for row in result:
-        (prodId, prodName, quantity, shipDate) = row
+        (serviceid, datetime, themeevent) = row
         tableRow = f"""
         <tr>
-            <td>{prodId}
-            <td>{prodName}
-            <td>{quantity}
-            <td>{shipDate}
+            <td>{serviceid}
+            <td>{datetime}
+            <td>{themeevent}
         </tr>
         """
         tableRows += tableRow
@@ -56,15 +60,14 @@ def hello():
 
 HTML_DOC = """<html><body>
         <form>
-          Show products with quantity less than: <input type='text' name='qty' value=''>
+          Input service id: <input type='text' name='id' value=''>
           <input type='submit' value='Go!'>
         </form>
         <table border='1'>
         <tr>
-            <td>Product ID
-            <td>Product Name
-            <td>Quantity
-            <td>Next Ship Date
+            <td>Service #
+            <td>Date
+            <td>Theme
         </tr>        
         {0}
         </table>
