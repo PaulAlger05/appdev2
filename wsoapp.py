@@ -13,9 +13,7 @@ import dbconfig
 app = Flask(__name__)
 
 @app.route('/')
-def hello():
-    id = 0
-    id = request.args.get('id')
+def displayServices():
 
     # We don't close the following explicitly because they are automatically closed
     # when the variables go out of scope when hello() returns
@@ -26,8 +24,7 @@ def hello():
     cursor.execute("""
             select Service_ID, Svc_DateTime, Theme_Event
             from service
-            where Service_ID = %s
-            """, (id, ))
+            """)
 
     # cursor.execute("""
     #     select ProdId, ProdName, Quantity, ProdNextShipDate
@@ -50,13 +47,9 @@ def hello():
         """
         tableRows += tableRow
 
-    return HTML_DOC.format(tableRows)
+    return HTML_SVCPAGE.format(tableRows)
 
-HTML_DOC = """<html><body>
-        <form>
-          Input service id: <input type='text' name='id' value=''>
-          <input type='submit' value='Go!'>
-        </form>
+HTML_SVCPAGE = """<html><body>
         <table border='1'>
         <tr>
             <td>Service #
