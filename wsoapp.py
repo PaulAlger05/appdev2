@@ -53,6 +53,15 @@ def displayServices():
 
     return HTML_SVCPAGE.format(tableRows)
 
+
+
+
+
+
+
+
+
+
 HTML_SVCPAGE = """<html><body>
         <table border='1'>
         <tr>
@@ -67,4 +76,3 @@ HTML_SVCPAGE = """<html><body>
 # Launch the local web server
 if __name__ == "__main__":
     app.run(host='localhost', debug=True)
-    
