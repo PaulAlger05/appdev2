@@ -2,9 +2,8 @@
 # To use this app:
 #   pip install mysql-connector-python
 #   pip install flask
-
-
-from flask import Flask, request
+from flask import Flask, send_from_directory, request, render_template
+import os.path
 from datetime import datetime
 import time
 from mysql.connector import connect
@@ -54,7 +53,7 @@ def displayServices():
         """
         tableRows += tableRow
 
-    return HTML_SVCPAGE.format(tableRows)
+    return render_template("svcPage.html").format(tableRows)
 
 @app.route('/serviceInfo')
 def serviceInfo():
@@ -86,35 +85,10 @@ def serviceInfo():
         </tr>
         """
         tableRows += tableRow
-        
-    return HTML_SVCINFO.format(tableRows)
+    return render_template("svcInfo.html").format(tableRows)
 
 
 
-
-
-HTML_SVCPAGE = """<html><body>
-        <table border='1'>
-        <tr>
-            <td>Service #
-            <td>Date
-            <td>Theme
-        </tr>        
-        {0}
-        </table>
-        </body></html>"""
-        
-HTML_SVCINFO = """<html><body>
-        <table border='1'>
-        <tr>
-            <td>Service #
-            <td>Date
-            <td>Theme
-
-        </tr>        
-        {0}
-        </table>
-        </body></html>"""
 
 # Launch the local web server
 if __name__ == "__main__":
