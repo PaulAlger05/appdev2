@@ -56,16 +56,38 @@ def displayServices():
 
     return HTML_SVCPAGE.format(tableRows)
 
-@app.route('serviceInfo')
+@app.route('/serviceInfo')
 def serviceInfo():
     
     # Grab specific service
     cursor.execute("""
             select * from service_view
             where service_id = %s
-            """, (request.args['Info'], ))
+            """, (request.args['info'], ))
 
-
+    result = cursor.fetchall()
+    
+    tableRows = ""
+    for row in result:
+        (serviceid, datetime, themeevent, songleader, organist, pianist, seq_num, event, title, name, notes) = row
+        tableRow = f"""
+        <tr>
+            <td>{serviceid}
+            <td>{datetime}
+            <td>{themeevent}
+            <td>{songleader}
+            <td>{organist}
+            <td>{pianist}
+            <td>{seq_num}
+            <td>{event}
+            <td>{title}
+            <td>{name}
+            <td>{notes}
+        </tr>
+        """
+        tableRows += tableRow
+        
+    return HTML_SVCINFO.format(tableRows)
 
 
 
@@ -77,6 +99,18 @@ HTML_SVCPAGE = """<html><body>
             <td>Service #
             <td>Date
             <td>Theme
+        </tr>        
+        {0}
+        </table>
+        </body></html>"""
+        
+HTML_SVCINFO = """<html><body>
+        <table border='1'>
+        <tr>
+            <td>Service #
+            <td>Date
+            <td>Theme
+
         </tr>        
         {0}
         </table>
