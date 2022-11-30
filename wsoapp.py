@@ -12,12 +12,13 @@ import dbconfig
 
 app = Flask(__name__)
 
+# Create cursor
+con = connect(user=dbconfig.DB_USER, password=dbconfig.DB_PASS, database=dbconfig.DB_NAME, host=dbconfig.DB_HOST) 
+cursor = con.cursor() 
+con.autocommit = True
+
 @app.route('/')
 def displayServices():
-
-    con = connect(user=dbconfig.DB_USER, password=dbconfig.DB_PASS, database=dbconfig.DB_NAME, host=dbconfig.DB_HOST) 
-    cursor = con.cursor() 
-    con.autocommit = True
 
     # Select all services
     cursor.execute("""
@@ -53,8 +54,14 @@ def displayServices():
 
     return HTML_SVCPAGE.format(tableRows)
 
-
-
+@app.route('serviceInfo')
+def serviceInfo():
+    
+    # Grab specific service
+    cursor.execute("""
+            select * from service_view
+            where service_id = %s
+            """, (request.args['Info'], ))
 
 
 
