@@ -71,12 +71,6 @@ def serviceInfo():
         (serviceid, datetime, themeevent, songleader, organist, pianist, seq_num, event, title, name, notes) = row
         tableRow = f"""
         <tr>
-            <td>{serviceid}
-            <td>{datetime}
-            <td>{themeevent}
-            <td>{songleader}
-            <td>{organist}
-            <td>{pianist}
             <td>{seq_num}
             <td>{event}
             <td>{title}
@@ -85,7 +79,7 @@ def serviceInfo():
         </tr>
         """
         tableRows += tableRow
-    return render_template("svcInfo.html").format(tableRows)
+    return render_template("svcInfo.html").format(serviceid, datetime, themeevent, songleader, tableRows)
 
 
 
