@@ -44,9 +44,11 @@ def displayServices():
             <td>{datetime}
             <td>{themeevent}
             <td>
-                <button type="submit" formaction="/serviceInfo" value="{serviceid}"> 
-                    Info
-                </button>
+                <form action="/serviceInfo" method="get">
+                    <button name="info" type="submit" formaction="/serviceInfo" value="{serviceid}"> 
+                        Info
+                    </button>
+                </form>
             </td>
         </tr>
         """
