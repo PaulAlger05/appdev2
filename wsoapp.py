@@ -15,12 +15,11 @@ app = Flask(__name__)
 @app.route('/')
 def displayServices():
 
-    # We don't close the following explicitly because they are automatically closed
-    # when the variables go out of scope when hello() returns
     con = connect(user=dbconfig.DB_USER, password=dbconfig.DB_PASS, database=dbconfig.DB_NAME, host=dbconfig.DB_HOST) 
     cursor = con.cursor() 
     con.autocommit = True
 
+    # Select all services
     cursor.execute("""
             select Service_ID, Svc_DateTime, Theme_Event
             from service
@@ -43,6 +42,11 @@ def displayServices():
             <td>{serviceid}
             <td>{datetime}
             <td>{themeevent}
+            <td>
+                <button type="submit" formaction="/serviceInfo" value="{serviceid}"> 
+                    Info
+                </button>
+            </td>
         </tr>
         """
         tableRows += tableRow
