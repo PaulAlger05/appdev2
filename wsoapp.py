@@ -87,13 +87,17 @@ def serviceInfo():
             """)
 
     result = cursor.fetchall()
-    
-    songleaderRows = ""
-    print(result)
+    names = []
     for row in result:
         (num, name) = row
-        print(name)
-        songleaderRow = f"""<option value="{name}" style="text-align: center;">{name}</option>
+        fname, lname = name.split()
+        names.append(lname + " " + fname)
+    names.sort()                            # Sorting by last name
+
+    songleaderRows = ""
+    for name in names:
+        ln, fn = name.split()
+        songleaderRow = f"""<option value="{fn + " " + ln}" style="text-align: center;">{fn + " " + ln}</option>
         """
         songleaderRows += songleaderRow
 
