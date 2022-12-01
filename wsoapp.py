@@ -79,7 +79,27 @@ def serviceInfo():
         </tr>
         """
         tableRows += tableRow
-    return render_template("svcInfo.html").format(serviceid, datetime, themeevent, songleader, tableRows)
+
+
+    # Grab list of songleaders
+    cursor.execute("""
+            select * from songleader_view
+            """)
+
+    result = cursor.fetchall()
+    
+    songleaderRows = ""
+    print(result)
+    for row in result:
+        (num, name) = row
+        print(name)
+        songleaderRow = f"""<option value="{name}" style="text-align: center;">{name}</option>
+        """
+        songleaderRows += songleaderRow
+
+
+        
+    return render_template("svcInfo.html").format(serviceid, datetime, themeevent, songleader, tableRows, songleaderRows)
 
 
 

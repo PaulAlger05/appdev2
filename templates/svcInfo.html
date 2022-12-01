@@ -1,44 +1,70 @@
 <html>
-    <body>
-        <h3>Service No.: </h3>
-        <label>{0}</label>
-        <h3>Date Time: </h3>
-        <label>{1}</label>
-        <h3>Theme: </h3>
-        <label>{2}</label>
-        <h3>Songleader: </h3>
-        <label>{3}</label>
-        </br>
-        </br>
-        <table border='1'>
-            <tr>
-                <td>seq_num
-                <td>event
-                <td>title
-                <td>name
-                <td>notes
+    <head>
+    </head>
+    <body style="background-color: lightgray;">
+        <div style="position: fixed; width: 450px; top: 15; left: 15; border: 1px solid gray; background-color: mintcream; border-radius: 15px;">
+            <div style="padding: 15">
+            <label style="font-size: 25px;"><b>Service #: </b></label>
+            <label style="font-size: 20px;">{0}</label>
+            </br>
+            </br>
+            <label style="font-size: 25px;"><b>Date Time: </b></label>
+            <label style="font-size: 20px; display: inline-block; text-align: right;">{1}</label>
+            </br>
+            </br>
+            <label style="font-size: 25px;"><b>Theme: </b></label>
+            <label style="font-size: 20px;">{2}</label>
+            </br>
+            </br>
+            <label style="font-size: 25px;"><b>Songleader: </b></label>
+            <label style="font-size: 20px;">{3}</label>
+            </br>
+            </br>
+            </div>
+        </div>
+        <div style="position: fixed; top: 15; left: 500; border: 0px solid #73AD21;">
+            <table border='1' style="background-color: mintcream; padding: 15px 15px 15px 15px; border-radius: 15px;">
+                <tr>
+                    <td style="font-size: 20; padding: 5px; text-align: center;"><b>sequ_num</b>
+                    <td style="font-size: 20; padding: 5px; text-align: center;"><b>event</b>
+                    <td style="font-size: 20; padding: 5px; text-align: center;"><b>title</b>
+                    <td style="font-size: 20; padding: 5px; text-align: center;"><b>name</b>
+                    <td style="font-size: 20; padding: 5px; text-align: center;"><b>notes</b>
 
-            </tr>        
-            {4}
-        </table>
-        </br>
-        </br>
-        </br>
-        </br>
-        <form action='/'>
-            <h4>DateTime: </h4>
-            <input id='nameText' type='text' name='DateTime' />
+                </tr>        
+                {4}
+            </table>
             </br>
             </br>
-            <h4>Theme: </h4>
-            <input id='nameText' type='text' name='Theme' />
             </br>
             </br>
-            <h4>Songleader: </h4>
-            <input id='nameText' type='text' name='Songleader (placeholder)' />
+        </div>
+        <div style="position: fixed; width: 450px; top: 265; left: 15; border: 1px solid gray; background-color: mintcream; border-radius: 15px;">
+        <form action='/' >
+            <div style="padding: 15px 15px 15px 15px;">
+            <h1>Create New Service</h1>
+            <label style="font-size: 15px;"><b>DateTime: </b></label>
+            <input id='nameText' type='text' name='DateTime' placeholder="yyyy-mm-dd hh:mm:ss" required/>
+            <label style="color: red; font-size: 20px;">*</label>
             </br>
             </br>
+            <label style="font-size: 15px;"><b>Theme: </b></label>
+            <input id='nameText' type='text' name='Theme' value="{2}"/>
+            </br>
+            </br>
+            <label style="font-size: 15px;"><b>Songleader: </b></label>
+            <select name="songleader" id="songleader">
+                <option value="" style="text-align: center;">-</option>
+                {5}
+            </select>
+            </br>
+            </br>
+            <label style="color: red; font-size: 20px;">DON'T FORGET TO SORT SONGLEADER BY LAST NAME IN WSOAPP.PY</label>
             <input type='submit' name='action' value='Submit' />
+            </br>
+            </br>
+            </div>
         </form>
+        </div>
     </body>
 </html>
