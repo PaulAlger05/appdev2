@@ -183,7 +183,7 @@ CREATE TABLE `service` (
   `Svc_DateTime` datetime(6) NOT NULL,
   `Theme_Event` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`Service_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -330,6 +330,31 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'wsoapp2'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `create_service` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `create_service`(IN newDateTime DATETIME, IN newTheme VARCHAR(50), IN newSongleader VARCHAR(25), OUT message CHAR)
+BEGIN
+	DECLARE next_id INTEGER;
+	SELECT MAX(Service_ID) + 1 INTO next_id FROM service;
+    
+    INSERT INTO service (Service_ID, Svc_DateTime, Theme_Event)
+    VALUES (next_id, newDateTime, newTheme);
+    
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Final view structure for view `organist_view`
@@ -412,4 +437,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-30 16:11:27
+-- Dump completed on 2022-12-01 18:09:08
