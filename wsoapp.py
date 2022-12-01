@@ -106,6 +106,12 @@ def serviceInfo():
     return render_template("svcInfo.html").format(serviceid, datetime, themeevent, songleader, tableRows, songleaderRows)
 
 
+@app.route('/createService')
+def createService():
+    pass
+    # result = cursor.callproc('create_service', use the variables from the boxes)
+    # message = str(result[2])
+
 
 
 # Launch the local web server
