@@ -2,24 +2,25 @@
     <head>
     </head>
     <body style="background-color: lightgray;">
-        <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: white; background-color: gray; font-size: 35px; padding: 12px 12px 12px 12px;">
-            <label>Service Info</label> 
+        <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: white; background-color: #525252; font-size: 35px; padding: 8px 8px 8px 8px;">
+            <img src="https://media.discordapp.net/attachments/1047937487235989574/1047937631637487686/logo.png" width="250"/>
+            <label style="position: relative; top: -15; right: -20;">Service Info</label> 
         </div>
         <div style="position: fixed; width: 450px; top: 100; left: 15; border: 1px solid gray; background-color: mintcream; border-radius: 15px;">
             <div style="padding: 15">
-            <label style="font-size: 25px;"><b>Service #: </b></label>
+            <label style="font-size: 22px; font-family: Verdana, Geneva, Tahoma, sans-serif;"><b>Service #: </b></label>
             <label style="font-size: 20px;">{0}</label>
             </br>
             </br>
-            <label style="font-size: 25px;"><b>Date Time: </b></label>
+            <label style="font-size: 22px; font-family: Verdana, Geneva, Tahoma, sans-serif;"><b>Date Time: </b></label>
             <label style="font-size: 20px; display: inline-block; text-align: right;">{1}</label>
             </br>
             </br>
-            <label style="font-size: 25px;"><b>Theme: </b></label>
+            <label style="font-size: 22px; font-family: Verdana, Geneva, Tahoma, sans-serif;"><b>Theme: </b></label>
             <label style="font-size: 20px;">{2}</label>
             </br>
             </br>
-            <label style="font-size: 25px;"><b>Songleader: </b></label>
+            <label style="font-size: 22px; font-family: Verdana, Geneva, Tahoma, sans-serif;"><b>Songleader: </b></label>
             <label style="font-size: 20px;">{3}</label>
             </br>
             </br>
@@ -42,20 +43,22 @@
             </br>
             </br>
         </div>
-        <div style="position: fixed; width: 450px; top: 350; left: 15; border: 1px solid gray; background-color: mintcream; border-radius: 15px;">
+        <div style="position: fixed; width: 450px; top: 340; left: 15; border: 1px solid gray; background-color: mintcream; border-radius: 15px;">
         <form action='/' >
             <div style="padding: 15px 15px 15px 15px;">
-            <h1>Create New Service</h1>
-            <label style="font-size: 15px;"><b>DateTime: </b></label>
+            <label style="font-size: 25px;  font-family: Verdana, Geneva, Tahoma, sans-serif;"><b>Create New Service</b></label>
+            </br>
+            </br>
+            <label style="font-size: 15px;  font-family: Verdana, Geneva, Tahoma, sans-serif;"><b>DateTime: </b></label>
             <input id='nameText' type='text' name='DateTime' placeholder="yyyy-mm-dd hh:mm:ss" required/>
             <label style="color: red; font-size: 20px;">*</label>
             </br>
             </br>
-            <label style="font-size: 15px;"><b>Theme: </b></label>
+            <label style="font-size: 15px;  font-family: Verdana, Geneva, Tahoma, sans-serif;"><b>Theme: </b></label>
             <input id='nameText' type='text' name='Theme' value="{2}"/>
             </br>
             </br>
-            <label style="font-size: 15px;"><b>Songleader: </b></label>
+            <label style="font-size: 15px;  font-family: Verdana, Geneva, Tahoma, sans-serif;"><b>Songleader: </b></label>
             <select name="songleader" id="songleader">
                 <option value="" style="text-align: center;">-</option>
                 {5}
