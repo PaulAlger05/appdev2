@@ -24,12 +24,7 @@ def displayServices():
             select Service_ID, Svc_DateTime, Theme_Event
             from service
             """)
-
-    # cursor.execute("""
-    #     select ProdId, ProdName, Quantity, ProdNextShipDate
-    #     from product
-    #     where Quantity < %s
-    # """, (qty, ))   
+ 
 
     # Retrieve results
     result = cursor.fetchall()
@@ -100,9 +95,7 @@ def serviceInfo():
         songleaderRow = f"""<option value="{fn + " " + ln}" style="text-align: center;">{fn + " " + ln}</option>
         """
         songleaderRows += songleaderRow
-
-
-        
+  
     return render_template("svcInfo.html").format(serviceid, datetime, themeevent, songleader, tableRows, songleaderRows)
 
 
