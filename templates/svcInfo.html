@@ -7,7 +7,7 @@
         <img src="{{ url_for('static', filename='img/logo.png') }}" width="250"/>
         <label class="header">Service Info</label> 
     </div>
-    <div class="default" style="position: fixed; top: 100; left: 15;">
+    <div class="default" style="position: fixed; top: 130; left: 15;">
         <div class="pads">
         <label class="statsTitle"><b>Service #: </b></label>
         <label class="stats">{0}</label>
@@ -27,7 +27,7 @@
         </br>
         </div>
     </div>
-    <div style="position: fixed; top: 100; left: 500;">
+    <div style="position: fixed; top: 130; left: 500;">
         <table border='1' class="default">
             <tr>
                 <td style="font-size: 20; padding: 5px; text-align: center;"><b>sequ_num</b>
@@ -44,9 +44,9 @@
         </br>
         </br>
     </div>
-    <div class="default" style="position: fixed; top: 340; left: 15;">
+    <div class="default" style="position: fixed; top: 370; left: 15;">
     <form action='/' >
-        <div class="pad"></div>
+        <div class="pads">
         <label class="createTitle"><b>Create New Service</b></label>
         </br>
         </br>
@@ -71,6 +71,11 @@
         </br>
         </div>
     </form>
+    </div>
+    <div class="pads" style="position: fixed; top: 85">
+        <form action="/">
+            <button>Back</button>
+        </form>
     </div>
 </body>
 </html>
