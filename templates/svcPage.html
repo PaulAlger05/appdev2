@@ -1,16 +1,19 @@
 <html>
-    <body style="background-color: lightgray;">
-        <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: white; background-color: #525252; font-size: 35px; padding: 8px 8px 8px 8px;">
+    <head> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+    <body>
+        <div class="header">
             <img src="https://media.discordapp.net/attachments/1047937487235989574/1047937631637487686/logo.png" width="250"/>
-            <label style="position: relative; top: -15; right: -20;">Services</label> 
+            <label class="header">Services</label> 
         </div>
         <div style="position: fixed; top: 100; padding: 5px 5px 5px 5px;">
-        <table border='1' style="background-color: mintcream; padding: 15px 15px 15px 15px; border-radius: 15px;">
+        <table border='1' class="default">
             <tr>
-                <td style="font-size: 20; padding: 5px; text-align: center;"><b>Service #</b>
-                <td style="font-size: 20; padding: 5px; text-align: center;"><b>Date</b>
-                <td style="font-size: 20; padding: 5px; text-align: center;"><b>Theme</b>
-                <td style="font-size: 20; padding: 5px; text-align: center;"></td><b></b>
+                <td class="header"><b>Service #</b>
+                <td class="header"><b>Date</b>
+                <td class="header"><b>Theme</b>
+                <td class="header"></td><b></b>
             </tr>        
             {0}
         </table>

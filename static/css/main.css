@@ -1,0 +1,55 @@
+body {
+    background-color: lightgray;
+}
+
+label.header {
+    position: relative;
+    top: -15;
+    right: -20;
+}
+
+label.statsTitle {
+    font-size: 22px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+label.stats {
+    font-size: 20px;
+}
+
+label.createTitle {
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+label.createParams {
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+div.header {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    background-color: #525252;
+    font-size: 35px;
+    padding: 8px 8px 8px 8px;
+}
+
+div.default {
+    width: 450px;
+    border: 1px solid gray;
+    background-color: mintcream;
+    border-radius: 15px;
+}
+
+table.default {
+    background-color: mintcream;
+    padding: 15px 15px 15px 15px;
+    border-radius: 15px;
+}
+
+td.header {
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+}
