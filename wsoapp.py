@@ -61,19 +61,40 @@ def serviceInfo():
 
     result = cursor.fetchall()
     
-    tableRows = ""
-    for row in result:
-        (serviceid, datetime, themeevent, songleader, organist, pianist, seq_num, event, title, name, notes) = row
-        tableRow = f"""
+    if len(result) == 0:
+        cursor.execute("""
+                select service_id, svc_datetime, theme_event 
+                from service
+                where service_id = %s
+                """, (request.args['info'], ))
+
+        result = cursor.fetchall()
+        (serviceid, datetime, themeevent) = result[0]
+
+        songleader = "placeholder"
+        tableRows = f"""
         <tr>
-            <td>{seq_num}
-            <td>{event}
-            <td>{title}
-            <td>{name}
-            <td>{notes}
+            <td> 
+            <td> 
+            <td> 
+            <td> 
+            <td> 
         </tr>
         """
-        tableRows += tableRow
+    else:
+        tableRows = ""
+        for row in result:
+            (serviceid, datetime, themeevent, songleader, organist, pianist, seq_num, event, title, name, notes) = row
+            tableRow = f"""
+            <tr>
+                <td>{seq_num}
+                <td>{event}
+                <td>{title}
+                <td>{name}
+                <td>{notes}
+            </tr>
+            """
+            tableRows += tableRow
 
 
     # Grab list of songleaders
