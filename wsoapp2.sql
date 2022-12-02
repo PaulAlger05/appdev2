@@ -183,7 +183,7 @@ CREATE TABLE `service` (
   `Svc_DateTime` datetime(6) NOT NULL,
   `Theme_Event` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`Service_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +225,7 @@ CREATE TABLE `service_item` (
   CONSTRAINT `FK_service_event_Service` FOREIGN KEY (`Service_ID`) REFERENCES `service` (`Service_ID`),
   CONSTRAINT `FK_service_event_Song` FOREIGN KEY (`Song_ID`) REFERENCES `song` (`song_id`),
   CONSTRAINT `FK_service_item_event_type` FOREIGN KEY (`Event_Type_ID`) REFERENCES `event_type` (`Event_Type_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -340,7 +340,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `create_service`(IN newDateTime DATETIME, IN newTheme VARCHAR(50), IN newSongleader VARCHAR(50), OUT success INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `create_service`(IN currentServiceID INT, IN newDateTime DATETIME, IN newTheme VARCHAR(50), IN newSongleader VARCHAR(50), OUT success INT)
 BEGIN
 	DECLARE next_id INTEGER;
     DECLARE personid INTEGER;
@@ -358,6 +358,12 @@ BEGIN
         
         INSERT INTO fills_role (Service_ID, Person_ID, Role_Type, Confirmed)
         VALUES (next_id, personid, 'S', 'Y');
+        
+        
+        INSERT INTO service_item (Service_ID, Seq_Num, Event_Type_ID, Title, Notes, Confirmed, Person_ID, Ensemble_ID, Song_ID)
+        SELECT next_id, service_item.Seq_num, service_item.Event_Type_ID, service_item.Title, service_item.Notes, 'Y', service_item.Person_ID, Ensemble_ID, Song_ID FROM service_item
+        WHERE Service_id = currentServiceID;
+        
         
         SET success = 1; # Success
     END IF;
@@ -449,4 +455,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-02  0:55:28
+-- Dump completed on 2022-12-02 15:04:47
