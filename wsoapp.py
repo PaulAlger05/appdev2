@@ -104,13 +104,15 @@ def serviceInfo():
 def createService():
     # TODO: let new songleader be able to be left blank
     result = cursor.callproc('create_service', (request.args['DateTime'], request.args['Theme'], request.args['songleader'], 0))
-    result = cursor.callproc('create_service2', (request.args['DateTime'], request.args['Theme'], request.args['songleader'], request.args['serviceID'], 0))
     successCode = result[3]
     
+
     if successCode == 0:
         return render_template('createFailure.html')
     else:
         return render_template('createSuccess.html')
+
+    
 
 
 
