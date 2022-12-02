@@ -88,7 +88,7 @@ def serviceInfo():
         fname, lname = name.split()
         names.append(lname + " " + fname)
     names.sort()                            # Sorting by last name
-
+    names = list(set(names))
     songleaderRows = ""
     for name in names:
         ln, fn = name.split()
