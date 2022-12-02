@@ -1,12 +1,12 @@
 <html>
     <body>
         <div class="header">
-            <img src="https://media.discordapp.net/attachments/1047937487235989574/1047937631637487686/logo.png" width="250"/>
+            <img src="{{ url_for('static', filename='img/logo.png') }}" width="250"/>
             <label class="header"></label> 
         </div>
         <div style="align-items: center;">
             <label style="font-size: 25px;">Service Successfully Created</label>  
-            <img href="https://media.discordapp.net/attachments/1047937487235989574/1047939567208116295/greenCheck.png"/>  
+            <img src="{{ url_for('static', filename='img/greenCheck.png') }}"/>  
         </div>
     </body>
 </html>
