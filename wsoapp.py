@@ -101,9 +101,14 @@ def serviceInfo():
 
 @app.route('/createService')
 def createService():
-    pass
-    # result = cursor.callproc('create_service', use the variables from the boxes)
-    # message = str(result[2])
+    # TODO: let new songleader be able to be left blank
+    result = cursor.callproc('create_service', (request.args['DateTime'], request.args['Theme'], request.args['songleader'], 0))
+    successCode = result[3]
+    
+    if successCode == 0:
+        return render_template('createFailure.html')
+    else:
+        return render_template('createSuccess.html')
 
 
 

@@ -183,7 +183,7 @@ CREATE TABLE `service` (
   `Svc_DateTime` datetime(6) NOT NULL,
   `Theme_Event` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`Service_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -340,15 +340,27 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `create_service`(IN newDateTime DATETIME, IN newTheme VARCHAR(50), IN newSongleader VARCHAR(25), OUT message CHAR)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `create_service`(IN newDateTime DATETIME, IN newTheme VARCHAR(50), IN newSongleader VARCHAR(50), OUT success INT)
 BEGIN
 	DECLARE next_id INTEGER;
+    DECLARE personid INTEGER;
+    
+    # Default values
+    SELECT person.Person_ID INTO personid FROM person WHERE CONCAT(person.First_Name, ' ' , person.Last_Name) = newSongleader;
 	SELECT MAX(Service_ID) + 1 INTO next_id FROM service;
     
-    INSERT INTO service (Service_ID, Svc_DateTime, Theme_Event)
-    VALUES (next_id, newDateTime, newTheme);
-    
-    
+    # Check service time
+    IF newDateTime IN (SELECT Svc_DateTime FROM service) THEN 
+		SET success = 0; # Error
+    ELSE 
+		INSERT INTO service (Service_ID, Svc_DateTime, Theme_Event)
+		VALUES (next_id, newDateTime, newTheme);
+        
+        INSERT INTO fills_role (Service_ID, Person_ID, Role_Type, Confirmed)
+        VALUES (next_id, personid, 'S', 'Y');
+        
+        SET success = 1; # Success
+    END IF;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -437,4 +449,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-01 18:09:08
+-- Dump completed on 2022-12-02  0:55:28
