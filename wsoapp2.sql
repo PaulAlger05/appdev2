@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
 -- Host: localhost    Database: wsoapp2
 -- ------------------------------------------------------
--- Server version	8.0.26
+-- Server version	8.0.30
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -105,7 +105,7 @@ CREATE TABLE `member_of` (
   PRIMARY KEY (`Ensemble_ID`,`Person_ID`),
   KEY `FK_member_of_Person` (`Person_ID`),
   CONSTRAINT `FK_member_of_Ensemble` FOREIGN KEY (`Ensemble_ID`) REFERENCES `ensemble` (`Ensemble_ID`),
-  CONSTRAINT `FK_member_of_Person` FOREIGN KEY (`Person_ID`) REFERENCES `person` (`person_id`)
+  CONSTRAINT `FK_member_of_Person` FOREIGN KEY (`Person_ID`) REFERENCES `person` (`Person_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -223,7 +223,7 @@ CREATE TABLE `service_item` (
   CONSTRAINT `FK_service_event_Ensemble` FOREIGN KEY (`Ensemble_ID`) REFERENCES `ensemble` (`Ensemble_ID`),
   CONSTRAINT `FK_service_event_Person` FOREIGN KEY (`Person_ID`) REFERENCES `person` (`Person_ID`),
   CONSTRAINT `FK_service_event_Service` FOREIGN KEY (`Service_ID`) REFERENCES `service` (`Service_ID`),
-  CONSTRAINT `FK_service_event_Song` FOREIGN KEY (`Song_ID`) REFERENCES `song` (`song_id`),
+  CONSTRAINT `FK_service_event_Song` FOREIGN KEY (`Song_ID`) REFERENCES `song` (`Song_ID`),
   CONSTRAINT `FK_service_item_event_type` FOREIGN KEY (`Event_Type_ID`) REFERENCES `event_type` (`Event_Type_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=236 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -314,7 +314,7 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `Title`,
  1 AS `Hymnbook_Num`,
  1 AS `Arranger`,
- 1 AS `Svc_DateTime`*/;
+ 1 AS `LastUsedDate`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -472,12 +472,12 @@ DELIMITER ;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8 */;
-/*!50001 SET character_set_results     = utf8 */;
-/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `songusageview` AS select `song`.`Song_ID` AS `Song_Id`,`song`.`Song_Type` AS `Song_Type`,`song`.`Title` AS `Title`,`song`.`Hymnbook_Num` AS `Hymnbook_Num`,`song`.`Arranger` AS `Arranger`,`service`.`Svc_DateTime` AS `Svc_DateTime` from ((`song` left join `service_item` on((`song`.`Song_ID` = `service_item`.`Song_ID`))) left join `service` on((`service_item`.`Service_ID` = `service`.`Service_ID`))) where (`song`.`Song_Type` <> 'C') order by `service`.`Svc_DateTime`,`song`.`Title` */;
+/*!50001 VIEW `songusageview` AS select `song`.`Song_ID` AS `Song_Id`,`song`.`Song_Type` AS `Song_Type`,`song`.`Title` AS `Title`,`song`.`Hymnbook_Num` AS `Hymnbook_Num`,`song`.`Arranger` AS `Arranger`,`service`.`Svc_DateTime` AS `LastUsedDate` from ((`song` left join `service_item` on((`song`.`Song_ID` = `service_item`.`Song_ID`))) left join `service` on((`service_item`.`Service_ID` = `service`.`Service_ID`))) where (`song`.`Song_Type` <> 'C') order by `service`.`Svc_DateTime`,`song`.`Title` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -491,4 +491,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-05 23:35:33
+-- Dump completed on 2022-12-05 23:50:27
