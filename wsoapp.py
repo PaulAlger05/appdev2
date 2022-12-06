@@ -147,13 +147,33 @@ def createService():
     for i in range(0 ,songGrabCount):
         songs.append(request.args['congSong' + str(i+1)])
 
-    result = cursor.callproc('create_service', (request.args['serviceID'], request.args['DateTime'], "NULL" if request.args['Theme'] == "" else request.args['Theme'], "NULL" if request.args['songleader'] == "" else request.args['songleader'], 0))
-    successCode = result[3]
+    
+
+    result = cursor.callproc('create_service', (request.args['serviceID'], request.args['DateTime'], "NULL" if request.args['Theme'] == "" else request.args['Theme'], "NULL" if request.args['songleader'] == "" else request.args['songleader'], 0, 0))
+    
+    successCode = result[4]
+    
+
     
 
     if successCode == 0:
         return render_template('createFailure.html')
     else:
+        cursor.execute("""
+                select service_item.Service_Item_Id from service_item
+                where service_item.Event_Type_Id = 5 AND service_item.Service_Id = %s
+                """, (result[5],))
+
+        result = cursor.fetchall()
+
+        service_item_ids = []
+        for row in result:
+            service_item_ids.append(row[0])
+
+        for i in range(0, len(service_item_ids)):
+            pass
+            # TODO: procedure that takes service_item_ids[i] and songs[i] and inserts song[i] into the service_item = service_item_ids[i] 
+
         return render_template('createSuccess.html')
 
     
