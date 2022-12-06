@@ -103,7 +103,7 @@ def serviceInfo():
 @app.route('/createService')
 def createService():
     # TODO: let new songleader be able to be left blank
-    result = cursor.callproc('create_service', (request.args['serviceID'], request.args['DateTime'], request.args['Theme'], request.args['songleader'], 0))
+    result = cursor.callproc('create_service', (request.args['serviceID'], request.args['DateTime'], "NULL" if request.args['Theme'] == "" else request.args['Theme'], "NULL" if request.args['songleader'] == "" else request.args['songleader'], 0))
     successCode = result[3]
     
 
