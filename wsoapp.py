@@ -141,14 +141,13 @@ def serviceInfo():
 
 @app.route('/createService')
 def createService():
-    # TODO: let new songleader be able to be left blank
     songGrabCount = int(request.args['congSongCount'])
     songs = []
     for i in range(0 ,songGrabCount):
         songs.append(request.args['congSong' + str(i+1)])
 
     
-
+    # Create the new service
     result = cursor.callproc('create_service', (request.args['serviceID'], request.args['DateTime'], "NULL" if request.args['Theme'] == "" else request.args['Theme'], "NULL" if request.args['songleader'] == "" else request.args['songleader'], 0, 0))
     
     successCode = result[4]
@@ -171,8 +170,8 @@ def createService():
             service_item_ids.append(row[0])
 
         for i in range(0, len(service_item_ids)):
-            pass
             # TODO: procedure that takes service_item_ids[i] and songs[i] and inserts song[i] into the service_item = service_item_ids[i] 
+            cursor.callproc('add_song', (service_item_ids[i], songs[i]))
 
         return render_template('createSuccess.html')
 
