@@ -66,7 +66,6 @@ def serviceInfo():
     for row in result:
         (serviceid, datetime, themeevent, songleader, organist, pianist, seq_num, event, title, name, notes) = row
 
-        print(event)
         if event == "Cong. Song":
             congSongs += 1
 
