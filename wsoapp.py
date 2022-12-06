@@ -130,18 +130,23 @@ def serviceInfo():
     # Cong Songs Picker
     congSongInputs = ""
     for i in range(0, congSongs):
-        congSongInputs += "<label class='createParams'><b>Cong. Song " + str(i + 1) + ": </b></label>\n<select name=congSong" + str(i + 1) + ">\n"
+        congSongInputs += "<label class='createParams'><b>Cong. Song " + str(i + 1) + ": </b></label>\n<select name='congSong" + str(i + 1) + "'>\n"
         for j in range(0, len(songTitles)):
             congSongInputs += "<option value='" + songTitles[j] + "' style='text-align: center;'>" + songTitles[j] + "</option>\n"
         congSongInputs += "</select>\n<br>\n<br>\n"
     
   
-    return render_template("svcInfo.html").format(serviceid, datetime, themeevent, songleader, tableRows, songleaderRows, congSongInputs, songTableRows)
+    return render_template("svcInfo.html").format(serviceid, datetime, themeevent, songleader, tableRows, songleaderRows, congSongInputs, songTableRows, congSongs)
 
 
 @app.route('/createService')
 def createService():
     # TODO: let new songleader be able to be left blank
+    songGrabCount = int(request.args['congSongCount'])
+    songs = []
+    for i in range(0 ,songGrabCount):
+        songs.append(request.args['congSong' + str(i+1)])
+
     result = cursor.callproc('create_service', (request.args['serviceID'], request.args['DateTime'], "NULL" if request.args['Theme'] == "" else request.args['Theme'], "NULL" if request.args['songleader'] == "" else request.args['songleader'], 0))
     successCode = result[3]
     
