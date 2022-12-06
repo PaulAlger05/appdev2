@@ -88,7 +88,7 @@ CREATE TABLE `fills_role` (
 
 LOCK TABLES `fills_role` WRITE;
 /*!40000 ALTER TABLE `fills_role` DISABLE KEYS */;
-INSERT INTO `fills_role` VALUES (2,1,'O','Y'),(6,2,'P','Y'),(10,1,'P','Y'),(14,2,'O','Y'),(15,2,'S','Y'),(16,1,'S','Y');
+INSERT INTO `fills_role` VALUES (1,7,'P','Y'),(2,1,'O','Y'),(2,7,'O','Y'),(6,2,'P','Y'),(10,1,'P','Y'),(14,2,'O','Y'),(15,2,'S','Y'),(15,7,'S','Y'),(15,8,'S','Y'),(16,1,'S','Y'),(16,9,'S','Y');
 /*!40000 ALTER TABLE `fills_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +192,7 @@ CREATE TABLE `service` (
 
 LOCK TABLES `service` WRITE;
 /*!40000 ALTER TABLE `service` DISABLE KEYS */;
-INSERT INTO `service` VALUES (1,'2019-10-03 10:30:00.000000','let the peace of christ rule'),(2,'2019-10-03 17:30:00.000000','Lord\'s Supper'),(6,'2019-10-10 10:30:00.000000','Drawing Nearer');
+INSERT INTO `service` VALUES (1,'2019-10-03 10:30:00.000000','let the peace of christ rule'),(2,'2019-10-03 17:30:00.000000','Lord\'s Supper'),(6,'2019-10-10 10:30:00.000000','Drawing Nearer'),(7,'2021-12-04 00:00:00.000000','let the peale'),(8,'2021-02-02 00:00:00.000000','NewTheme'),(9,'2021-12-02 00:00:00.000000','let the of christ rule'),(10,'2021-12-03 00:00:00.000000','let the hrist rule');
 /*!40000 ALTER TABLE `service` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,7 +225,7 @@ CREATE TABLE `service_item` (
   CONSTRAINT `FK_service_event_Service` FOREIGN KEY (`Service_ID`) REFERENCES `service` (`Service_ID`),
   CONSTRAINT `FK_service_event_Song` FOREIGN KEY (`Song_ID`) REFERENCES `song` (`song_id`),
   CONSTRAINT `FK_service_item_event_type` FOREIGN KEY (`Event_Type_ID`) REFERENCES `event_type` (`Event_Type_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=206 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +234,7 @@ CREATE TABLE `service_item` (
 
 LOCK TABLES `service_item` WRITE;
 /*!40000 ALTER TABLE `service_item` DISABLE KEYS */;
-INSERT INTO `service_item` VALUES (1,1,1,1,'It is Well','flute','Y',1,NULL,NULL),(2,1,2,2,NULL,NULL,'Y',2,NULL,NULL),(3,1,3,3,NULL,NULL,'Y',3,NULL,NULL),(4,1,4,2,NULL,NULL,'Y',2,NULL,NULL),(5,1,5,4,NULL,NULL,'Y',3,NULL,NULL),(6,1,6,5,NULL,NULL,'Y',NULL,NULL,2),(7,1,7,6,NULL,NULL,'Y',4,NULL,NULL),(8,1,8,5,NULL,NULL,'Y',NULL,NULL,3),(9,1,9,7,'May the Mind of Christ my Savior','From organ well, need MIC','Y',NULL,1,NULL),(10,1,10,8,NULL,NULL,'Y',NULL,2,5),(11,1,11,5,NULL,NULL,'Y',NULL,NULL,6),(12,1,12,9,'Jesus, I am Resting',NULL,'Y',5,NULL,NULL),(13,1,13,10,NULL,NULL,'Y',4,NULL,NULL),(14,1,14,11,NULL,NULL,'Y',NULL,NULL,8),(15,1,15,12,NULL,NULL,'Y',2,NULL,NULL),(16,2,1,2,NULL,NULL,'Y',10,NULL,NULL),(17,2,2,6,NULL,NULL,'N',3,NULL,NULL),(18,2,3,5,NULL,NULL,'Y',NULL,NULL,9),(19,2,4,5,NULL,NULL,'Y',NULL,NULL,10),(21,2,5,5,NULL,NULL,'Y',NULL,NULL,13),(22,2,6,5,NULL,NULL,'Y',NULL,NULL,14),(23,2,7,14,NULL,NULL,'Y',11,NULL,NULL),(33,6,1,1,NULL,NULL,'N',2,NULL,NULL),(34,6,2,5,NULL,NULL,'Y',NULL,NULL,6);
+INSERT INTO `service_item` VALUES (1,1,1,1,'It is Well','flute','Y',1,NULL,NULL),(2,1,2,2,NULL,NULL,'Y',2,NULL,NULL),(3,1,3,3,NULL,NULL,'Y',3,NULL,NULL),(4,1,4,2,NULL,NULL,'Y',2,NULL,NULL),(5,1,5,4,NULL,NULL,'Y',3,NULL,NULL),(6,1,6,5,NULL,NULL,'Y',NULL,NULL,2),(7,1,7,6,NULL,NULL,'Y',4,NULL,NULL),(8,1,8,5,NULL,NULL,'Y',NULL,NULL,3),(9,1,9,7,'May the Mind of Christ my Savior','From organ well, need MIC','Y',NULL,1,NULL),(10,1,10,8,NULL,NULL,'Y',NULL,2,5),(11,1,11,5,NULL,NULL,'Y',NULL,NULL,6),(12,1,12,9,'Jesus, I am Resting',NULL,'Y',5,NULL,NULL),(13,1,13,10,NULL,NULL,'Y',4,NULL,NULL),(14,1,14,11,NULL,NULL,'Y',NULL,NULL,8),(15,1,15,12,NULL,NULL,'Y',2,NULL,NULL),(16,2,1,2,NULL,NULL,'Y',10,NULL,NULL),(17,2,2,6,NULL,NULL,'N',3,NULL,NULL),(18,2,3,5,NULL,NULL,'Y',NULL,NULL,9),(19,2,4,5,NULL,NULL,'Y',NULL,NULL,10),(21,2,5,5,NULL,NULL,'Y',NULL,NULL,13),(22,2,6,5,NULL,NULL,'Y',NULL,NULL,14),(23,2,7,14,NULL,NULL,'Y',11,NULL,NULL),(33,6,1,1,NULL,NULL,'N',2,NULL,NULL),(34,6,2,5,NULL,NULL,'Y',NULL,NULL,6),(146,7,1,1,'It is Well','flute','Y',1,NULL,NULL),(147,7,2,2,NULL,NULL,'Y',2,NULL,NULL),(148,7,3,3,NULL,NULL,'Y',3,NULL,NULL),(149,7,4,2,NULL,NULL,'Y',2,NULL,NULL),(150,7,5,4,NULL,NULL,'Y',3,NULL,NULL),(151,7,6,5,NULL,NULL,'Y',NULL,NULL,2),(152,7,7,6,NULL,NULL,'Y',4,NULL,NULL),(153,7,8,5,NULL,NULL,'Y',NULL,NULL,3),(154,7,9,7,'May the Mind of Christ my Savior','From organ well, need MIC','Y',NULL,1,NULL),(155,7,10,8,NULL,NULL,'Y',NULL,2,5),(156,7,11,5,NULL,NULL,'Y',NULL,NULL,6),(157,7,12,9,'Jesus, I am Resting',NULL,'Y',5,NULL,NULL),(158,7,13,10,NULL,NULL,'Y',4,NULL,NULL),(159,7,14,11,NULL,NULL,'Y',NULL,NULL,8),(160,7,15,12,NULL,NULL,'Y',2,NULL,NULL),(161,8,1,1,'It is Well','flute','Y',1,NULL,NULL),(162,8,2,2,NULL,NULL,'Y',2,NULL,NULL),(163,8,3,3,NULL,NULL,'Y',3,NULL,NULL),(164,8,4,2,NULL,NULL,'Y',2,NULL,NULL),(165,8,5,4,NULL,NULL,'Y',3,NULL,NULL),(166,8,6,5,NULL,NULL,'Y',NULL,NULL,2),(167,8,7,6,NULL,NULL,'Y',4,NULL,NULL),(168,8,8,5,NULL,NULL,'Y',NULL,NULL,3),(169,8,9,7,'May the Mind of Christ my Savior','From organ well, need MIC','Y',NULL,1,NULL),(170,8,10,8,NULL,NULL,'Y',NULL,2,5),(171,8,11,5,NULL,NULL,'Y',NULL,NULL,6),(172,8,12,9,'Jesus, I am Resting',NULL,'Y',5,NULL,NULL),(173,8,13,10,NULL,NULL,'Y',4,NULL,NULL),(174,8,14,11,NULL,NULL,'Y',NULL,NULL,8),(175,8,15,12,NULL,NULL,'Y',2,NULL,NULL),(176,9,1,1,'It is Well','flute','Y',1,NULL,NULL),(177,9,2,2,NULL,NULL,'Y',2,NULL,NULL),(178,9,3,3,NULL,NULL,'Y',3,NULL,NULL),(179,9,4,2,NULL,NULL,'Y',2,NULL,NULL),(180,9,5,4,NULL,NULL,'Y',3,NULL,NULL),(181,9,6,5,NULL,NULL,'Y',NULL,NULL,2),(182,9,7,6,NULL,NULL,'Y',4,NULL,NULL),(183,9,8,5,NULL,NULL,'Y',NULL,NULL,3),(184,9,9,7,'May the Mind of Christ my Savior','From organ well, need MIC','Y',NULL,1,NULL),(185,9,10,8,NULL,NULL,'Y',NULL,2,5),(186,9,11,5,NULL,NULL,'Y',NULL,NULL,6),(187,9,12,9,'Jesus, I am Resting',NULL,'Y',5,NULL,NULL),(188,9,13,10,NULL,NULL,'Y',4,NULL,NULL),(189,9,14,11,NULL,NULL,'Y',NULL,NULL,8),(190,9,15,12,NULL,NULL,'Y',2,NULL,NULL),(191,10,1,1,'It is Well','flute','Y',1,NULL,NULL),(192,10,2,2,NULL,NULL,'Y',2,NULL,NULL),(193,10,3,3,NULL,NULL,'Y',3,NULL,NULL),(194,10,4,2,NULL,NULL,'Y',2,NULL,NULL),(195,10,5,4,NULL,NULL,'Y',3,NULL,NULL),(196,10,6,5,NULL,NULL,'Y',NULL,NULL,2),(197,10,7,6,NULL,NULL,'Y',4,NULL,NULL),(198,10,8,5,NULL,NULL,'Y',NULL,NULL,3),(199,10,9,7,'May the Mind of Christ my Savior','From organ well, need MIC','Y',NULL,1,NULL),(200,10,10,8,NULL,NULL,'Y',NULL,2,5),(201,10,11,5,NULL,NULL,'Y',NULL,NULL,6),(202,10,12,9,'Jesus, I am Resting',NULL,'Y',5,NULL,NULL),(203,10,13,10,NULL,NULL,'Y',4,NULL,NULL),(204,10,14,11,NULL,NULL,'Y',NULL,NULL,8),(205,10,15,12,NULL,NULL,'Y',2,NULL,NULL);
 /*!40000 ALTER TABLE `service_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -356,9 +356,10 @@ BEGIN
 		INSERT INTO service (Service_ID, Svc_DateTime, Theme_Event)
 		VALUES (next_id, newDateTime, newTheme);
         
-        INSERT INTO fills_role (Service_ID, Person_ID, Role_Type, Confirmed)
-        VALUES (next_id, personid, 'S', 'Y');
-        
+        IF personid IS NOT NULL THEN 
+			INSERT INTO fills_role (Service_ID, Person_ID, Role_Type, Confirmed)
+			VALUES (next_id, personid, 'S', 'Y');
+		END IF;
         
         INSERT INTO service_item (Service_ID, Seq_Num, Event_Type_ID, Title, Notes, Confirmed, Person_ID, Ensemble_ID, Song_ID)
         SELECT next_id, service_item.Seq_num, service_item.Event_Type_ID, service_item.Title, service_item.Notes, 'Y', service_item.Person_ID, Ensemble_ID, Song_ID FROM service_item
@@ -423,7 +424,7 @@ DELIMITER ;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `service_view` AS select `service`.`Service_ID` AS `service_ID`,`service`.`Svc_DateTime` AS `Svc_DateTime`,`service`.`Theme_Event` AS `Theme_Event`,`songleader_view`.`songleader_name` AS `songleader`,`organist_view`.`organist_name` AS `organist`,`pianist_view`.`pianist_name` AS `pianist`,`service_item`.`Seq_Num` AS `Seq_Num`,`event_type`.`Description` AS `event`,(case when (`service_item`.`Person_ID` is not null) then concat(`person`.`First_Name`,' ',`person`.`Last_Name`) when (`service_item`.`Ensemble_ID` is not null) then `ensemble`.`Name` else NULL end) AS `name`,(case when (`song`.`Song_Type` = 'H') then concat(`song`.`Hymnbook_Num`,' - ',`song`.`Title`) when (`song`.`Song_Type` = 'C') then `song`.`Title` else `service_item`.`Title` end) AS `Title`,`service_item`.`Notes` AS `notes` from ((((((((`service_item` join `service` on((`service_item`.`Service_ID` = `service`.`Service_ID`))) join `event_type` on((`service_item`.`Event_Type_ID` = `event_type`.`Event_Type_ID`))) join `songleader_view` on((`service_item`.`Service_ID` = `songleader_view`.`service_id`))) join `organist_view` on((`service_item`.`Service_ID` = `organist_view`.`service_id`))) join `pianist_view` on((`service_item`.`Service_ID` = `pianist_view`.`service_id`))) left join `person` on((`service_item`.`Person_ID` = `person`.`Person_ID`))) left join `ensemble` on((`service_item`.`Ensemble_ID` = `ensemble`.`Ensemble_ID`))) left join `song` on((`service_item`.`Song_ID` = `song`.`Song_ID`))) order by `service_item`.`Seq_Num` */;
+/*!50001 VIEW `service_view` AS select `service`.`Service_ID` AS `service_ID`,`service`.`Svc_DateTime` AS `Svc_DateTime`,`service`.`Theme_Event` AS `Theme_Event`,`songleader_view`.`songleader_name` AS `songleader`,`organist_view`.`organist_name` AS `organist`,`pianist_view`.`pianist_name` AS `pianist`,`service_item`.`Seq_Num` AS `Seq_Num`,`event_type`.`Description` AS `event`,(case when (`service_item`.`Person_ID` is not null) then concat(`person`.`First_Name`,' ',`person`.`Last_Name`) when (`service_item`.`Ensemble_ID` is not null) then `ensemble`.`Name` else NULL end) AS `name`,(case when (`song`.`Song_Type` = 'H') then concat(`song`.`Hymnbook_Num`,' - ',`song`.`Title`) when (`song`.`Song_Type` = 'C') then `song`.`Title` else `service_item`.`Title` end) AS `Title`,`service_item`.`Notes` AS `notes` from ((((((((`service_item` join `service` on((`service_item`.`Service_ID` = `service`.`Service_ID`))) join `event_type` on((`service_item`.`Event_Type_ID` = `event_type`.`Event_Type_ID`))) left join `songleader_view` on((`service_item`.`Service_ID` = `songleader_view`.`service_id`))) left join `organist_view` on((`service_item`.`Service_ID` = `organist_view`.`service_id`))) left join `pianist_view` on((`service_item`.`Service_ID` = `pianist_view`.`service_id`))) left join `person` on((`service_item`.`Person_ID` = `person`.`Person_ID`))) left join `ensemble` on((`service_item`.`Ensemble_ID` = `ensemble`.`Ensemble_ID`))) left join `song` on((`service_item`.`Song_ID` = `song`.`Song_ID`))) order by `service_item`.`Seq_Num` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -455,4 +456,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-02 15:04:47
+-- Dump completed on 2022-12-05 22:15:14
