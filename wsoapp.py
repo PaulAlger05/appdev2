@@ -61,10 +61,15 @@ def serviceInfo():
 
     result = cursor.fetchall()
     
-
+    congSongs = 0
     tableRows = ""
     for row in result:
         (serviceid, datetime, themeevent, songleader, organist, pianist, seq_num, event, title, name, notes) = row
+
+        print(event)
+        if event == "Cong. Song":
+            congSongs += 1
+
         tableRow = f"""
         <tr>
             <td>{seq_num}
@@ -96,8 +101,43 @@ def serviceInfo():
         songleaderRow = f"""<option value="{fn + " " + ln}" style="text-align: center;">{fn + " " + ln}</option>
         """
         songleaderRows += songleaderRow
+
+    # Grab list of least used songs from view
+    cursor.execute("""
+            select * from songusageview
+            """)
+    
+    result = cursor.fetchall()
+
+    songTitles = []
+    songTableRows = ""
+    limit = 0
+    for row in result:
+        limit += 1
+        (songid, songtype, title, hymnbookNum, arranger, dateTime) = row
+
+        songTitles.append(title)
+
+        songTableRow = f"""
+        <tr>
+            <td>{dateTime}
+            <td>{title}
+        </tr>
+        """
+        songTableRows += songTableRow
+        if limit == 20:
+            break
+
+    # Cong Songs Picker
+    congSongInputs = ""
+    for i in range(0, congSongs):
+        congSongInputs += "<label class='createParams'><b>Cong. Song " + str(i + 1) + ": </b></label>\n<select name=congSong" + str(i + 1) + ">\n"
+        for j in range(0, len(songTitles)):
+            congSongInputs += "<option value='" + songTitles[j] + "' style='text-align: center;'>" + songTitles[j] + "</option>\n"
+        congSongInputs += "</select>\n<br>\n<br>\n"
+    
   
-    return render_template("svcInfo.html").format(serviceid, datetime, themeevent, songleader, tableRows, songleaderRows)
+    return render_template("svcInfo.html").format(serviceid, datetime, themeevent, songleader, tableRows, songleaderRows, congSongInputs, songTableRows)
 
 
 @app.route('/createService')
