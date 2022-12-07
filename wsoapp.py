@@ -129,6 +129,7 @@ def serviceInfo():
 
     # Cong Songs Picker
     congSongInputs = ""
+    songTitles = list(set(songTitles))
     for i in range(0, congSongs):
         congSongInputs += "<label class='createParams'><b>Cong. Song " + str(i + 1) + ": </b></label>\n<select name='congSong" + str(i + 1) + "'>\n"
         for j in range(0, len(songTitles)):

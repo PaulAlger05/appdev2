@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: localhost    Database: wsoapp2
 -- ------------------------------------------------------
--- Server version	8.0.30
+-- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -505,12 +505,12 @@ DELIMITER ;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb3 */;
-/*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb3_general_ci */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `songusageview` AS select `song`.`Song_ID` AS `Song_Id`,`song`.`Song_Type` AS `Song_Type`,`song`.`Title` AS `Title`,`song`.`Hymnbook_Num` AS `Hymnbook_Num`,`song`.`Arranger` AS `Arranger`,max(`service`.`Svc_DateTime`) AS `LastUsedDate` from ((`song` left join `service_item` on((`song`.`Song_ID` = `service_item`.`Song_ID`))) left join `service` on((`service_item`.`Service_ID` = `service`.`Service_ID`))) where (`song`.`Song_Type` <> 'C') group by `song`.`Song_ID`,`song`.`Song_Type`,`song`.`Title`,`song`.`Hymnbook_Num`,`song`.`Arranger` order by (`service`.`Svc_DateTime` is not null),`service`.`Svc_DateTime` desc,`song`.`Title` */;
+/*!50001 VIEW `songusageview` AS select `song`.`Song_ID` AS `Song_Id`,`song`.`Song_Type` AS `Song_Type`,`song`.`Title` AS `Title`,`song`.`Hymnbook_Num` AS `Hymnbook_Num`,`song`.`Arranger` AS `Arranger`,`service`.`Svc_DateTime` AS `LastUsedDate` from ((`song` left join `service_item` on((`song`.`Song_ID` = `service_item`.`Song_ID`))) left join `service` on((`service_item`.`Service_ID` = `service`.`Service_ID`))) where (`song`.`Song_Type` <> 'C') order by (`service`.`Svc_DateTime` is null),`service`.`Svc_DateTime`,`song`.`Title` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -524,4 +524,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-06 14:24:36
+-- Dump completed on 2022-12-06 21:51:57
